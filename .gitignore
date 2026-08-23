@@ -1,7 +1,9 @@
-deployment/config.env
 deployment/config.quality.env
 *.log
 *.zip
+*.gguf
+*.safetensors
+*.bin
 __pycache__/
 **/__pycache__/
 *.pyc

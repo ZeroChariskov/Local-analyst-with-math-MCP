@@ -1,7 +1,7 @@
 ---
 description: Uses the private local model for bounded analysis, scoped edits, and focused tests.
 mode: subagent
-model: titan-local/Qwen3.8-27B-Q4_K_M.gguf
+model: titan-local/__MODEL_ID__
 hidden: true
 steps: 20
 temperature: 0.2
