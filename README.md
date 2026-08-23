@@ -1,3 +1,3 @@
 #Local-analyst-with-math-MCP
 
-[English](./readme.en.md) | [中文](./readme.cn.md)
+[English](./README.en.md) | [中文](./README.cn.md)
