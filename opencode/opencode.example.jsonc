@@ -1,0 +1,79 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": [
+    ".opencode/prompts/local-analyst-routing.md"
+  ],
+  "mcp": {
+    "titan-math": {
+      "type": "local",
+      "command": ["python", "server.py"],
+      "cwd": "mcp/math",
+      "enabled": true,
+      "timeout": 30000
+    }
+  },
+  "agent": {
+    "build": {
+      "permission": {
+        "task": {
+          "*": "deny",
+          "local-analyst": "allow"
+        }
+      }
+    },
+    "local-analyst": {
+      "description": "Uses the private local model for bounded analysis, scoped edits, and focused tests.",
+      "mode": "subagent",
+      "model": "titan-local/__MODEL_ID__",
+      "hidden": true,
+      "steps": 20,
+      "permission": {
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow",
+        "lsp": "allow",
+        "titan-math_*": "allow",
+        "edit": "allow",
+        "task": "deny",
+        "webfetch": "deny",
+        "websearch": "deny",
+        "skill": "deny",
+        "bash": {
+          "*": "deny",
+          "git status*": "allow",
+          "git diff*": "allow",
+          "git log*": "allow",
+          "npm test*": "allow",
+          "npm run test*": "allow",
+          "pytest*": "allow",
+          "python -m pytest*": "allow",
+          "cargo test*": "allow",
+          "go test*": "allow"
+        }
+      }
+    }
+  },
+  "provider": {
+    "titan-local": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Private Local Vision Model",
+      "options": {
+        "baseURL": "http://__TAILSCALE_IP__:__GATEWAY_PORT__/v1",
+        "apiKey": "__API_KEY__"
+      },
+      "models": {
+        "__MODEL_ID__": {
+          "name": "Private Local Vision Model",
+          "attachment": true,
+          "reasoning": true,
+          "tool_call": true,
+          "limit": {
+            "context": 160000,
+            "output": 4096
+          }
+        }
+      }
+    }
+  }
+}

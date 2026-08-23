@@ -1,0 +1,12 @@
+deployment/config.env
+deployment/config.quality.env
+*.log
+*.zip
+__pycache__/
+**/__pycache__/
+*.pyc
+.venv/
+logs/
+.env
+.env.*
+!.env.example
